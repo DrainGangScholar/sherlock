@@ -38,7 +38,7 @@ void print_structure_rec(struct_db_rec_t *struct_rec)
     printf(ANSI_COLOR_YELLOW "| %-20s | size = %-8d | #flds = %-3d |\n" ANSI_COLOR_RESET, struct_rec->struct_name, struct_rec->ds_size, struct_rec->n_fields);
     printf(ANSI_COLOR_CYAN "|------------------------------------------------------|------------------------------------------------------------------------------------------|\n" ANSI_COLOR_RESET);
 
-    for (int i = 0; i < struct_rec->n_fields; i++)
+    for (unsigned int i = 0; i < struct_rec->n_fields; i++)
     {
         field = &struct_rec->fields[i];
         printf("  %-20s |", "");
