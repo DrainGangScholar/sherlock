@@ -63,6 +63,8 @@ void print_structure_db(struct_db_t *struct_db)
 
 struct_db_rec_t *struct_db_look_up(struct_db_t *struct_db, char *struct_name)
 {
+    if (!struct_db)
+        return NULL;
     struct_db_rec_t *current = struct_db->head;
 
     while (current != NULL && strcmp(current->struct_name, struct_name))
