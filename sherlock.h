@@ -7,6 +7,14 @@
 #define MAX_STRUCTURE_NAME_SIZE 128
 #define MAX_FIELD_NAME_SIZE 128
 
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_BLUE "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN "\x1b[36m"
+#define ANSI_COLOR_RESET "\x1b[0m"
+
 typedef enum
 {
     UINT8,
@@ -23,11 +31,11 @@ typedef enum
 // tog struct-a u memoriji.
 
 #define OFFSETOF(struct_name, fld_name) \
-    (unsigned long)&(((struct_name *)nullptr)->fld_name)
+    (unsigned long)&(((struct_name *)NULL)->fld_name)
 // pristupim fld_name, reference-ujem ga sa & i onda ga cast-ujem u unsigned long
 // tako dobijem offset fld_name-a unutar te strukture
 #define FIELD_SIZE(struct_name, fld_name) \
-    sizeof(((struct_name *)nullptr)->fld_name)
+    sizeof(((struct_name *)NULL)->fld_name)
 // velicina fld_name-a u bajtovima :DDD
 
 // Informacije vezane za jedno polje u strukturi
