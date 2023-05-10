@@ -76,6 +76,9 @@ void print_structure_db(struct_db_t *struct_db);
 // 0 je dobro, -1 je zapitaj se
 int add_structure_to_struct_db(struct_db_t *struct_db, struct_db_rec_t *struct_rec);
 
+// trazi struct_db sa struct_name imenom
+struct_db_rec_t *struct_db_look_up(struct_db_t *struct_db, char *struct_name);
+
 // Mapiranje polja za unos u
 #define FIELD_INFO(struct_name, fld_name, dtype, nested_struct_name) \
     {                                                                \

@@ -29,7 +29,6 @@ field_info_t student_fields[] = {
     FIELD_INFO(student_t, age, UINT8, NULL),
     FIELD_INFO(student_t, id_number, UINT32, NULL),
     FIELD_INFO(student_t, gpa, FLOAT, NULL)};
-
 int main()
 {
     // generise se baza :DDD
@@ -38,23 +37,13 @@ int main()
     struct_db.count = 0;
 
     // registruju se strukture :DDD
-    REG_STRUCT(&struct_db, student_t, student_fields);
     REG_STRUCT(&struct_db, teacher_t, teacher_fields);
+    REG_STRUCT(&struct_db, student_t, student_fields);
 
-    // prikaz
-    print_structure_db(&struct_db);
+    // print_structure_db(&struct_db);
 
-    // // cisti :DD
-    // while (struct_db.head != NULL)
-    // {
-    //     struct_db_rec_t *rec = struct_db.head;
-    //     struct_db.head = struct_db.head->next;
-    //     free(rec->fields);
-    //     free(rec);
-    // }
-
-    // free(teacher_fields);
-    // free(student_fields);
+    struct_db_rec_t *check = struct_db_look_up(&struct_db, "student_t");
+    print_structure_rec(check);
 
     return 0;
 }

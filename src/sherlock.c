@@ -1,4 +1,4 @@
-#include "sherlock.h"
+#include "../include/sherlock.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -59,4 +59,15 @@ void print_structure_db(struct_db_t *struct_db)
         print_structure_rec(current);
         current = current->next;
     }
+}
+
+struct_db_rec_t *struct_db_look_up(struct_db_t *struct_db, char *struct_name)
+{
+    struct_db_rec_t *current = struct_db->head;
+
+    while (current != NULL && strcmp(current->struct_name, struct_name))
+    {
+        current = current->next;
+    }
+    return current; // ko pozove nek proveri da li je null ili ne :D
 }
