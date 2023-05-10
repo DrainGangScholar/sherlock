@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 char *DATA_TYPE[] = {"UINT8", "UINT32", "INT32",
-                     "CHAR", "OBJ_PTR", "VOID_PTR", "FLOAT",
+                     "CHAR", "FLOAT", "OBJ_PTR",
                      "DOUBLE", "OBJ_STRUCT"};
 
 int add_structure_to_struct_db(struct_db_t *struct_db,

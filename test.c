@@ -40,10 +40,11 @@ int main()
     REG_STRUCT(&struct_db, teacher_t, teacher_fields);
     REG_STRUCT(&struct_db, student_t, student_fields);
 
-    // print_structure_db(&struct_db);
+    print_structure_db(&struct_db);
 
     struct_db_rec_t *check = struct_db_look_up(&struct_db, "student_t");
-    print_structure_rec(check);
+    // print_structure_rec(check);
+    free(check);
 
     return 0;
 }
