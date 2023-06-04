@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 char *DATA_TYPE[] = {"UINT8", "UINT32", "INT32",
                      "CHAR", "FLOAT", "OBJ_PTR",
                      "DOUBLE", "OBJ_STRUCT"};
