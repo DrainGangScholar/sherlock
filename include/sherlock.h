@@ -27,14 +27,11 @@ typedef enum
     OBJ_STRUCT
 } data_type_t;
 
-typedef enum{
-
-    MLD_FALSE,
-    MLD_TRUE
-} sherlock_boolean_t;
-
-// kad se cast-uje nullptr u struct_name*, onda pokazuje na pocetak
-// tog struct-a u memoriji.
+typedef enum
+{
+    SHERLOCK_FALSE,
+    SHERLOCK_TRUE
+}sherlock_boolean_t;
 
 #define OFFSETOF(struct_name, fld_name) \
     (unsigned long)&(((struct_name *)NULL)->fld_name)
@@ -129,8 +126,12 @@ void print_object_rec(object_db_rec_t* obj, int i);
 
 void print_object_db(object_db_t* obj_db);
 
-void add_object_to_object_db(object_db_t* obj_db ,void* ptr,int units,struct_db_rec_t* struct_rec);
+void add_object_to_object_db(object_db_t* obj_db ,void* ptr,int units,struct_db_rec_t* struct_rec,sherlock_boolean_t flag);
 
 void* memlock(object_db_t* obj_db, char* struct_name, int units);
+
+void register_root_object(object_db_t *obj_db,void* obj_ptr,char* struct_name,unsigned int units);
+
+void set_object_as_global_root(object_db_t* obj_db,void* obj_potr);
 
 #endif // SHERLOCK_H

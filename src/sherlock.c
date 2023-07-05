@@ -89,7 +89,7 @@ static object_db_rec_t *object_db_look_up(object_db_t *obj_db, void *ptr){
 }
 
 
-void add_object_to_object_db(object_db_t* obj_db ,void* ptr,int units,struct_db_rec_t* struct_rec)
+void add_object_to_object_db(object_db_t* obj_db ,void* ptr,int units,struct_db_rec_t* struct_rec,sherlock_boolean_t flag)
 {
     object_db_rec_t* obj_rec = object_db_look_up(obj_db, ptr);
 
@@ -101,6 +101,8 @@ void add_object_to_object_db(object_db_t* obj_db ,void* ptr,int units,struct_db_
     obj_rec->ptr = ptr;
     obj_rec->units = units;
     obj_rec->struct_rec = struct_rec;
+    obj_rec->is_visited=SHERLOCK_FALSE;
+    obj_rec->is_root=flag;
 
     if (!obj_db->head)
     {
@@ -138,6 +140,22 @@ void* memlock(object_db_t* obj_db, char* struct_name, int units)
 {
     struct_db_rec_t* struct_rec = struct_db_look_up(obj_db->struct_db,struct_name);
     void* ptr=calloc(units,struct_rec->ds_size);
-    add_object_to_object_db(obj_db,ptr,units,struct_rec);
+    add_object_to_object_db(obj_db,ptr,units,struct_rec,SHERLOCK_FALSE);
     return ptr;
+}
+
+void register_root_object(object_db_t *obj_db,void* obj_ptr,char* struct_name,unsigned int units)
+{
+    struct_db_rec_t *struct_rec=struct_db_look_up(obj_db->struct_db,struct_name);
+    assert(struct_rec);
+
+    add_object_to_object_db(obj_db,obj_ptr,units,struct_rec,SHERLOCK_TRUE);
+}
+
+void set_object_as_global_root(object_db_t* obj_db,void* obj_ptr)
+{
+    object_db_rec_t *obj_rec =object_db_look_up(obj_db,obj_ptr);
+    assert(obj_rec);
+
+    obj_rec->is_root=SHERLOCK_TRUE;
 }
